@@ -1,0 +1,31 @@
+﻿@model BalancedSoccerTeams.Models.Player
+
+@{
+    ViewData["Title"] = "Delete Player";
+}
+
+<h1>Delete Player</h1>
+
+<h3>Are you sure you want to delete this player?</h3>
+
+<div>
+    <h4>@Model.Name</h4>
+    <dl class="row">
+        <dt class="col-sm-2">Overall</dt>
+        <dd class="col-sm-10">
+            @Model.OverallScore.ToString("0.0") (Rank @Model.Rank)
+        </dd>
+    </dl>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

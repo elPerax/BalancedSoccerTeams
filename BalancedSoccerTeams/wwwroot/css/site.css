@@ -1,0 +1,230 @@
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top left, #f4f8ff 0, #f9fbff 35%, #ffffff 100%);
+    color: #1b2838;
+}
+
+
+.app-navbar {
+    background: linear-gradient(90deg, #1f3c88, #4a69bd);
+}
+
+.navbar-brand {
+    font-size: 1.25rem;
+    letter-spacing: 0.03em;
+}
+
+.nav-link-main {
+    color: rgba(255,255,255,0.85) !important;
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 0.25rem;
+}
+
+    .nav-link-main::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background-color: #ffdd57;
+        transition: width 0.2s ease-out;
+    }
+
+    .nav-link-main:hover::after,
+    .nav-link-main:focus::after {
+        width: 100%;
+    }
+
+
+.app-body {
+    min-height: calc(100vh - 120px);
+}
+
+.app-container {
+    padding-top: 1.75rem;
+}
+
+
+h1, h2, h3, h4 {
+    font-weight: 700;
+    color: #14213d;
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 1.5rem;
+}
+
+.page-title-icon {
+    font-size: 1.6rem;
+}
+
+
+.card {
+    border-radius: 0.75rem;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.card-header {
+    border-top-left-radius: 0.75rem !important;
+    border-top-right-radius: 0.75rem !important;
+    background: linear-gradient(135deg, #1f3c88, #4a69bd);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 1rem 1.25rem;
+}
+
+
+.btn-primary,
+.btn-success {
+    border-radius: 999px;
+    padding-inline: 1.4rem;
+    padding-block: 0.45rem;
+    font-weight: 600;
+    box-shadow: 0 6px 16px rgba(30, 64, 175, 0.25);
+    border: none;
+}
+
+.btn-success {
+    background-color: #16a34a;
+}
+
+    .btn-success:hover {
+        background-color: #15803d;
+    }
+
+.btn-primary {
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+}
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #1d4ed8, #4338ca);
+    }
+
+
+.form-label {
+    font-weight: 500;
+    color: #1f2933;
+}
+
+.form-control {
+    border-radius: 0.6rem;
+    border: 1px solid rgba(148, 163, 184, 0.8);
+}
+
+    .form-control:focus {
+        box-shadow: 0 0 0 0.15rem rgba(37, 99, 235, 0.25);
+    }
+
+
+.players-table {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+    overflow: hidden;
+}
+
+    .players-table thead {
+        background: linear-gradient(90deg, #1f3c88, #4a69bd);
+        color: #ffffff;
+    }
+
+    .players-table th {
+        font-weight: 600;
+        border-bottom: none;
+    }
+
+    .players-table td {
+        vertical-align: middle;
+    }
+
+.rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.2rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.rank-1 {
+    background-color: #facc15;
+}
+
+.rank-2 {
+    background-color: #a5b4fc;
+}
+
+.rank-3 {
+    background-color: #bfdbfe;
+}
+
+.rank-4 {
+    background-color: #fed7aa;
+}
+
+.rank-5 {
+    background-color: #fecaca;
+}
+
+
+.team-generator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.team-generator-subtitle {
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+.team-list {
+    margin-top: 1rem;
+}
+
+.team-card {
+    margin-bottom: 1.5rem;
+}
+
+.team-score-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6b7280;
+}
+
+
+.app-footer {
+    background-color: #ffffff;
+}
+
+
+hr {
+    border-color: rgba(148, 163, 184, 0.4);
+}
+
+.text-muted {
+    color: #6b7280 !important;
+}

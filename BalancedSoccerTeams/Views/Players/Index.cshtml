@@ -1,0 +1,70 @@
+﻿@model IEnumerable<BalancedSoccerTeams.Models.Player>
+
+@{
+    ViewData["Title"] = "Players";
+}
+
+<div class="page-title">
+    <span class="page-title-icon">📋</span>
+    <div>
+        <h1 class="mb-0">Players</h1>
+        <p class="team-generator-subtitle mb-0">
+            Manage player skill profiles. Each player contributes to the overall team balance.
+        </p>
+    </div>
+</div>
+
+<p class="mb-3">
+    <a asp-action="Create" class="btn btn-primary">Add New Player</a>
+</p>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        No players have been added yet. Click <strong>Add New Player</strong> to create your first one.
+    </div>
+}
+else
+{
+    <div class="table-responsive players-table">
+        <table class="table mb-0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Ball</th>
+                    <th>Pass</th>
+                    <th>Dribble</th>
+                    <th>Defense</th>
+                    <th>Shooting</th>
+                    <th>Overall</th>
+                    <th>Rank</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.BallControl</td>
+                        <td>@item.PassingAccuracy</td>
+                        <td>@item.Dribbling</td>
+                        <td>@item.DefensiveAwareness</td>
+                        <td>@item.Shooting</td>
+                        <td>@item.OverallScore.ToString("0.0")</td>
+                        <td>
+                            <span class="rank-badge rank-@item.Rank">
+                                @item.Rank
+                            </span>
+                        </td>
+                        <td class="text-end">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary me-1">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary me-1">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,130 @@
+﻿@model BalancedSoccerTeams.ViewModels.TeamGeneratorViewModel
+
+@{
+    ViewData["Title"] = "Team Generator";
+}
+
+<div class="team-generator-header">
+    <div class="page-title">
+        <span class="page-title-icon">🧮</span>
+        <div>
+            <h1 class="mb-0">Generate Balanced Teams</h1>
+            <p class="team-generator-subtitle mb-0">
+                Select who is present, choose the number of teams, and let the system balance skills automatically.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-lg-4 mb-3">
+        <div class="card">
+            <div class="card-header">
+                Team Settings
+            </div>
+            <div class="card-body">
+                <form asp-action="Generate" method="post">
+                    <div class="mb-3">
+                        <label asp-for="NumberOfTeams" class="form-label">Number of Teams</label>
+                        <input asp-for="NumberOfTeams" class="form-control" />
+                        <span asp-validation-for="NumberOfTeams" class="text-danger"></span>
+                    </div>
+
+                    <p class="small text-muted mb-2">
+                        Check all players who are present for today's match:
+                    </p>
+
+                    <div class="row">
+                        @foreach (var player in Model.AllPlayers)
+                        {
+                            <div class="col-12 mb-1">
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                           type="checkbox"
+                                           name="SelectedPlayerIds"
+                                           value="@player.Id"
+                                           @(Model.SelectedPlayerIds.Contains(player.Id) ? "checked" : "") />
+                                    <label class="form-check-label">
+                                        <strong>@player.Name</strong>
+                                        <span class="text-muted small">
+                                            (Overall: @player.OverallScore.ToString("0.0"), Rank @player.Rank)
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-success">
+                            Generate Teams
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                Generated Teams
+            </div>
+            <div class="card-body">
+                @if (Model.GeneratedTeams == null)
+                {
+                    <p class="text-muted mb-0">
+                        Choose the number of teams, select the available players, and click
+                        <strong>Generate Teams</strong> to see balanced squads.
+                    </p>
+                }
+                else
+                {
+                    <div class="row team-list">
+                        @foreach (var team in Model.GeneratedTeams)
+                        {
+                            <div class="col-md-6 col-xl-4 team-card">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        Team @team.TeamNumber
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="team-score-label">Total Skill Score</div>
+                                        <h4 class="mb-3">@team.TotalScore.ToString("0.0")</h4>
+
+                                        @if (!team.Players.Any())
+                                        {
+                                            <p class="text-muted small mb-0">
+                                                No players assigned to this team.
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <ul class="mb-0">
+                                                @foreach (var p in team.Players)
+                                                {
+                                                    <li>
+                                                        <strong>@p.Name</strong>
+                                                        <span class="text-muted small">
+                                                            (Overall: @p.OverallScore.ToString("0.0"), Rank @p.Rank)
+                                                        </span>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
