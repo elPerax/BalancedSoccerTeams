@@ -1,4 +1,3 @@
-# BalancedSoccerTeams
 
 # Balanced Soccer Team Generator
 
